@@ -1,0 +1,205 @@
+body {
+  background-color: rgb(37, 37, 87);
+  margin: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.bt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.2rem;
+  margin-top: -0.8rem;
+  background-color: #111;
+  border-radius: 10px;
+  max-width: 3rem;
+  height: 4rem;
+  border: 1px solid rgb(74, 64, 71);
+}
+.bt:hover {
+  background-color: rgb(81, 70, 99);
+}
+.txt {
+  margin: 0.5px;
+  color: #bbbbc4;
+}
+.img {
+  height: 3rem;
+  color: red;
+}
+.bodyModal {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.bodyy {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.backDrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(156, 156, 156, 0.6);
+}
+.inputStyle {
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: rgb(158, 158, 158);
+  background-color: #444;
+  margin-bottom: 1.5rem;
+  max-width: 15rem;
+  color: aliceblue;
+}
+.inputStyle:hover {
+  background-color: rgb(106, 106, 106);
+}
+.inputStyle:focus {
+  outline-offset: 0px;
+  outline: none;
+}
+.tableStyle {
+  border-top: 1px solid rgb(171, 160, 160);
+  border-left: 1px solid rgb(171, 160, 160);
+  border-right: 1px solid rgb(171, 160, 160);
+  width: 12rem;
+}
+.tds {
+  border-bottom: 1px solid rgb(171, 160, 160);
+  background-color: rgb(54, 54, 57);
+  max-width: 12rem;
+  padding: 0.3rem;
+  color: rgb(220, 220, 220);
+}
+.headerStyle {
+  background-color: rgb(47, 46, 48);
+  display: flex;
+  justify-content: end;
+}
+.footerStyle {
+  background-color: rgb(26, 26, 27);
+}
+.animate {
+  -webkit-animation: animatezoom 0.4s;
+  animation: animatezoom 0.4s;
+}
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.buttonDireita {
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem;
+  height: 10px;
+  width: 85px;
+  border-radius: 30px;
+  background-color: rgb(132, 54, 111);
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.buttonX {
+  border-radius: 50px;
+  margin: 0.3rem;
+  padding: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f3f3f5;
+  background-color: rgb(132, 54, 111);
+  border: none;
+}
+.buttonFix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f3f3f5;
+  background-color: rgb(116, 60, 101);
+  border: none;
+}
+.buttonDireita:hover {
+  -webkit-animation: btn 0.4s;
+  animation: btn 0.4s;
+  background-color: rgb(171, 4, 126);
+}
+@-webkit-keyframes btn {
+  from {
+    background-color: rgb(155, 71, 133);
+  }
+  to {
+    background-color: rgb(171, 4, 126);
+  }
+}
+@keyframes btn {
+  from {
+    background-color: rgb(155, 71, 133);
+  }
+  to {
+    background-color: rgb(171, 4, 126);
+  }
+}
+.icons {
+  margin-top: 5rem;
+}
+/* .tdsClick {
+  position: relative;
+  animation-name: example;
+  animation-duration: 0.3s;
+  animation-delay: 0.3s;
+  border-bottom: 1px solid rgb(171, 160, 160);
+}
+
+@keyframes example {
+  0% {
+    background-color: rgb(88, 58, 66);
+    border-bottom: 1px solid rgb(171, 160, 160);
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background-color: rgb(88, 58, 66);
+    left: 3rem;
+    border-bottom: 1px solid rgb(171, 160, 160);
+    top: 0px;
+  }
+  50% {
+    background-color: rgb(88, 58, 66);
+    left: 6rem;
+    border-bottom: 1px solid rgb(171, 160, 160);
+    top: 0px;
+  }
+  75% {
+    background-color: rgb(88, 58, 66);
+    left: 9rem;
+    top: 0px;
+  }
+  100% {
+    background-color: rgb(88, 58, 66);
+    left: 12rem;
+    top: 0px;
+  }
+} */
