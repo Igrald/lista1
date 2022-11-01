@@ -24,6 +24,9 @@ app.controllers = {
 
     const button = this.Buttons("button", "Nova lista", () => {
       if (localStorage.getItem("cartProducts")) {
+        const data = JSON.stringify(app.state.products);
+
+        localStorage.setItem("cartProducts", data);
       } else {
         this.dumpData();
       }

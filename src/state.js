@@ -15,6 +15,36 @@ app.state = {
       categoria: "frutas",
       lista: [],
     },
+    {
+      id: 4,
+      categoria: "padaria",
+      lista: [],
+    },
+    {
+      id: 5,
+      categoria: "frios",
+      lista: [],
+    },
+    {
+      id: 6,
+      categoria: "snacks",
+      lista: [],
+    },
+    {
+      id: 7,
+      categoria: "bebidas",
+      lista: [],
+    },
+    {
+      id: 8,
+      categoria: "eletronicos",
+      lista: [],
+    },
+    {
+      id: 9,
+      categoria: "geral",
+      lista: [],
+    },
   ],
   getinput() {
     const input = app.controllers.input;
