@@ -52,12 +52,13 @@ body {
   background-color: rgba(156, 156, 156, 0.6);
 }
 .inputStyle {
-  border-radius: 15px;
+  border-radius: 17px;
   border: 1px solid;
   border-color: rgb(158, 158, 158);
   background-color: #444;
   margin-bottom: 1.5rem;
-  max-width: 15rem;
+  width: 15rem;
+  height: 1.5rem;
   color: aliceblue;
 }
 .inputStyle:hover {
@@ -71,7 +72,7 @@ body {
   border-top: 1px solid rgb(171, 160, 160);
   border-left: 1px solid rgb(171, 160, 160);
   border-right: 1px solid rgb(171, 160, 160);
-  width: 12rem;
+  width: 15rem;
 }
 .tds {
   border-bottom: 1px solid rgb(171, 160, 160);
