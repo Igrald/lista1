@@ -27,6 +27,8 @@ app.controllers = {
         const data = JSON.stringify(app.state.products);
 
         localStorage.setItem("cartProducts", data);
+
+        location.reload();
       } else {
         this.dumpData();
       }
