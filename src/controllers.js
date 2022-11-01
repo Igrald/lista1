@@ -83,6 +83,8 @@ app.controllers = {
     bodys.display = "flex";
     bodys.flexDirection = "column";
     bodys.backgroundColor = "#2e3036";
+    bodys.justifyContent = "center";
+    bodys.alignItems = "center";
 
     icons.classList.add("icons");
 
