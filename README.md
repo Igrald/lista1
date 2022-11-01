@@ -1,2 +1,2 @@
-# lista1
+# list
 a simple shopping list
