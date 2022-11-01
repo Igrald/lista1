@@ -433,7 +433,7 @@ app.controllers = {
       modal.style.display = "flex";
       modal.style.background = "#FFFFFF";
       modal.style.borderRadius = "4px";
-      modal.style.width = "20.2rem";
+      modal.style.width = "22rem";
       modal.style.flexDirection = "column";
 
       divLista.style.maxHeight = "18rem";
