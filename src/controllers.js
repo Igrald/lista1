@@ -63,7 +63,8 @@ app.controllers = {
     containers.margin = "0rem 2.5rem 0rem 2.5rem";
 
     a.innerHTML = "ListaQ!";
-    a.style.fontSize = "1.2rem";
+
+    a.classList.add("listaQ");
     b.innerHTML = "nova lista";
 
     container.appendChild(a);
@@ -104,7 +105,7 @@ app.controllers = {
     const a = document.createElement("a");
 
     a.innerHTML = "Boas compras ヽ(^o^)丿";
-    a.style.color = "gray";
+    a.classList.add("boasCompras");
 
     footers.backgroundColor = "#28282b";
     footers.width = "100vw";
