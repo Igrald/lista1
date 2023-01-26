@@ -15,7 +15,6 @@ app.controllers = {
     this.Body();
     els.root.appendChild(body);
     this.Footer();
-    console.log("oi");
   },
   Header() {
     const els = app.elements;
@@ -37,6 +36,29 @@ app.controllers = {
 
     const container = document.createElement("div");
     const containers = container.style;
+    const totalContainer = document.createElement("div");
+    totalContainer.classList.add("buttonQtdd");
+
+    const seta = () => {
+      const d = this.ttReform();
+      const total = this.totalDeVdd();
+
+      totalContainer.innerHTML = "";
+      totalContainer.innerHTML = `Total: ${total}`;
+    };
+
+    const interval = setInterval(seta, 500);
+
+    // const seta = () => {
+    //   const total = this.totalDeVdd();
+
+    //   totalContainer.innerHTML = "";
+    //   totalContainer.innerHTML = `Total: ${total}`;
+
+    //   console.log("total", total);
+    // };
+
+    // const interval = setInterval(seta, 500);
 
     const a = document.createElement("h1");
     const b = document.createElement("a");
@@ -68,6 +90,7 @@ app.controllers = {
     b.innerHTML = "nova lista";
 
     container.appendChild(a);
+    container.appendChild(totalContainer);
     container.appendChild(button);
     header.appendChild(container);
 
@@ -97,6 +120,15 @@ app.controllers = {
     body.appendChild(icons);
 
     els.root.appendChild(body);
+  },
+  Inputs() {
+    const input = document.createElement("input");
+
+    input.type = "number";
+
+    input.classList.add("inputNumber");
+
+    return input;
   },
   Footer() {
     const els = app.elements;
@@ -135,11 +167,6 @@ app.controllers = {
       button.onclick = onClick;
       button.classList.add("bt");
 
-      // let qt = app.state.cart[0].lista.length;
-
-      // qtd.innerHTML = qt;
-
-      // button.appendChild(qtd);
       button.appendChild(img);
       button.appendChild(text);
     }
@@ -285,14 +312,14 @@ app.controllers = {
       const button = document.createElement("button");
       const inputs = input.style;
 
+      const inpt = this.Inputs();
+
       form.onsubmit = (e) => {
         e.preventDefault();
 
         const td = this.NewTd(input.value);
 
         app.state.products[0].lista.push(input.value);
-
-        console.log(app.state.products[0].lista);
 
         table.appendChild(td);
       };
@@ -361,6 +388,35 @@ app.controllers = {
 
     return backDrop;
   },
+  totalDeVdd() {
+    const li = app.state.cart;
+
+    var sum = 0;
+
+    for (var i = 0; i < li.length; i++) {
+      sum += li[i].totalGeral;
+    }
+
+    const geralTotal = sum.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    return geralTotal;
+  },
+  ttReform() {
+    const li = app.state.cart;
+
+    const td1 = this.Tt(0);
+    const td2 = this.Tt(1);
+    const td3 = this.Tt(2);
+    const td4 = this.Tt(3);
+    const td5 = this.Tt(4);
+    const td6 = this.Tt(5);
+    const td7 = this.Tt(6);
+    const td8 = this.Tt(7);
+    const td9 = this.Tt(8);
+  },
   newModal(id, type = "", closeMd, mdClick) {
     const backDrop = document.createElement("div");
     const modal = document.createElement("div");
@@ -381,9 +437,20 @@ app.controllers = {
     const button2 = document.createElement("div");
 
     const table = document.createElement("table");
+    const value = document.createElement("div");
+
+    value.classList.add("buttonQtdd");
     backDrop.classList.add("backDrop");
     header.classList.add("headerStyle");
     footer.classList.add("footerStyle");
+
+    let cartTotal = app.state.cart[id].totalGeral;
+
+    const geralTotal = cartTotal.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+    value.innerHTML = `Total: ${geralTotal}`;
 
     if (type === "modals") {
       const boddy = document.createElement("div");
@@ -395,43 +462,120 @@ app.controllers = {
       const input = document.createElement("input");
       const button = document.createElement("button");
       const inputs = input.style;
+      const containerInputs = document.createElement("div");
+      const ipt = this.Inputs();
+      const iptQtd = this.Inputs();
+      const btn = document.createElement("div");
+      const img = document.createElement("img");
 
-      form.onsubmit = (e) => {
-        e.preventDefault();
+      iptQtd.placeholder = "Quantidade";
+      ipt.placeholder = "Valor";
+      img.src = "./assets/enter.svg";
 
+      containerInputs.style.display = "flex";
+      containerInputs.style.justifyContent = "space-between";
+      containerInputs.style.alignItems = "center";
+      containerInputs.style.width = "14rem";
+      const geralTotal = this.Tt(id);
+
+      value.innerHTML = "";
+      value.innerHTML = `Total: ${geralTotal}`;
+
+      btn.onclick = () => {
         if (app.state.cart) {
           const lista = app.state.cart[id].lista;
 
-          console.log(app.state.cart[id].lista);
+          const all = {
+            prod: input.value,
+            money: ipt.value,
+            Qtd: iptQtd.value,
+            total: iptQtd.value * ipt.value,
+          };
 
-          lista.push(input.value);
+          lista.push(all);
+
           this.dumpData();
+          var numero = ipt.value;
+          var multiplicador = iptQtd.value;
+          var foiMultiplicado = false;
 
-          const tdd = this.NewTd(input.value);
+          if (multiplicador < 1) {
+            multiplicador = 1;
+          }
+
+          if (!foiMultiplicado) {
+            numero *= multiplicador;
+            foiMultiplicado = true;
+          }
+          app.state.arreyTotal.push(numero);
+
+          const geralTotal = this.Tt(id);
+
+          value.innerHTML = "";
+          value.innerHTML = `Total: ${geralTotal}`;
+
+          const num = numero.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+
+          const tdd = this.NewTd(
+            "",
+            "",
+            input.value,
+            iptQtd.value,
+            ipt.value,
+            num
+          );
           table.appendChild(tdd);
           input.value = "";
+          iptQtd.value = "";
+          ipt.value = "";
         }
       };
       if (app.state.cart) {
         const lista = app.state.cart[id].lista;
 
         const tdd = lista.forEach((lista) => {
-          const td = this.NewTd(lista, id);
+          var numero = lista.money;
+          var multiplicador = lista.Qtd;
+          var foiMultiplicado = false;
+          if (multiplicador < 1) {
+            multiplicador = 1;
+          }
+          if (!foiMultiplicado) {
+            numero *= multiplicador;
+            foiMultiplicado = true;
+          }
+
+          const num = numero.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+
+          const td = this.NewTd(
+            lista,
+            id,
+            lista.prod,
+            lista.Qtd,
+            lista.money,
+            num
+          );
 
           td.onclick = () => {
-            console.log(app.state.cart[id].lista);
+            const geralTotal = this.Tt(id);
+
+            value.innerHTML = "";
+            value.innerHTML = `Total: ${geralTotal}`;
 
             this.dumpData();
-            console.log(td);
           };
 
           table.appendChild(td);
         });
-
-        console.log(lista);
       }
 
-      input.placeholder = "Digite a categoria";
+      input.placeholder = "Digite o nome do produto";
 
       form.appendChild(input);
       form.appendChild(button);
@@ -457,6 +601,7 @@ app.controllers = {
       backDrop.classList.add("backdrop");
       backDrop.onclick = mdClick;
 
+      btn.classList.add("buttonConfirm");
       button.style.padding = "1rem";
       button.innerHTML = "X";
       button.onclick = closeMd;
@@ -470,7 +615,13 @@ app.controllers = {
       button2.classList.add("buttonFix");
 
       divLista.appendChild(table);
+      header.appendChild(value);
       boddy.appendChild(form);
+      containerInputs.appendChild(ipt);
+      containerInputs.appendChild(iptQtd);
+      btn.appendChild(img);
+      containerInputs.appendChild(btn);
+      boddy.appendChild(containerInputs);
       boddy.appendChild(divLista);
       footer.appendChild(button2);
       header.appendChild(button);
@@ -483,6 +634,25 @@ app.controllers = {
     backDrop.appendChild(modal);
 
     return backDrop;
+  },
+  Tt(id) {
+    const li = app.state.cart[id].lista;
+
+    var total = li.reduce(getTotal, 0);
+    function getTotal(total, item) {
+      return total + item.Qtd * item.money;
+    }
+
+    app.state.cart[id].totalGeral = total;
+
+    let cartTotal = app.state.cart[id].totalGeral;
+
+    const geralTotal = cartTotal.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    return geralTotal;
   },
   bodyModal(type = "") {
     const body = document.createElement("div");
@@ -514,12 +684,9 @@ app.controllers = {
       form.onsubmit = (e) => {
         e.preventDefault();
 
-        console.log(input.value);
-
         const valor = input.value;
 
         app.state.id++;
-        console.log(app.state.id);
 
         this.Crud(app.state.id, valor);
 
@@ -529,11 +696,7 @@ app.controllers = {
 
         const add = { valor };
 
-        console.log(add, "loggggg");
-
         app.state.addToCart();
-
-        console.log(app.state.arrey);
       };
 
       input.placeholder = "Digite a categoria";
@@ -545,29 +708,100 @@ app.controllers = {
 
     return body;
   },
-  NewTd(txt, id) {
+  NewTd(txt, id, texto, qtd, money, tt) {
     const div = document.createElement("div");
     const td = document.createElement("td");
     const tr = document.createElement("tr");
+    const container = document.createElement("div");
+    container.classList.add("buttonQtd");
+
+    const contQtd = document.createElement("div");
+    const contMon = document.createElement("div");
+    const total = document.createElement("div");
+    const divi = document.createElement("div");
+
+    contMon.innerHTML = `Qtd: ${qtd}`;
+    contQtd.innerHTML = `R$: ${money}`;
+    total.innerHTML = `= ${tt}`;
+
+    divi.style.border = "1px solid white";
+    divi.style.height = "0.5rem";
+
+    contMon.classList.add("QtdPrice");
+    contQtd.classList.add("QtdPrice");
+    total.classList.add("QtdPrice");
 
     td.classList.add("tds");
 
     td.onclick = () => {
       td.style.display = "flex";
-      td.style.justifyContent = "end";
       td.style.borderBottom = "1px solid rgb(171, 160, 160)";
       td.style.backgroundColor = "rgb(88, 58, 66)";
-      td.style.maxWidth = "12rem";
-      td.style.padding = "0.3rem";
       td.style.color = "rgb(35, 10, 10)";
 
       app.state.removeFromCart(txt, id);
     };
 
-    td.innerHTML = txt;
+    td.innerHTML = texto;
+    container.appendChild(contQtd);
+    container.appendChild(divi);
+    container.appendChild(contMon);
+    container.appendChild(total);
+    td.appendChild(container);
     tr.appendChild(td);
 
     return tr;
+  },
+  ButtonMore(txt, id, valor) {
+    const button = document.createElement("div");
+    const buttons = button.style;
+    const button2 = document.createElement("div");
+    const buttons2 = button2.style;
+    const numero = document.createElement("div");
+
+    const containerQtd = document.createElement("div");
+    containerQtd.style.border = "5px solid red";
+    containerQtd.style.height = "1.2em";
+    containerQtd.style.display = "flex";
+    containerQtd.style.justifyContent = "space-between";
+    containerQtd.style.justifyItems = "center";
+
+    buttons.height = "1.2rem";
+    buttons.width = "0.5rem";
+    buttons.border = "2px solid blue";
+
+    buttons2.height = "1.2rem";
+    buttons2.width = "0.5rem";
+    buttons2.border = "2px solid blue";
+
+    numero.style.border = "1px solid green";
+    numero.style.height = "1.2rem";
+    numero.style.width = "1rem";
+    numero.innerHTML = valor;
+
+    button.onclick = () => {
+      numero.innerHTML = "";
+      valor--;
+      app.state.Modify(txt, id, valor);
+      this.dumpData();
+
+      numero.innerHTML = valor;
+    };
+
+    button2.onclick = () => {
+      numero.innerHTML = "";
+      valor++;
+      app.state.Modify(txt, id, valor);
+      this.dumpData();
+
+      numero.innerHTML = valor;
+    };
+
+    containerQtd.appendChild(button);
+    containerQtd.appendChild(numero);
+    containerQtd.appendChild(button2);
+
+    return containerQtd;
   },
   NewBodyModal() {
     const body = document.createElement("div");
@@ -579,7 +813,6 @@ app.controllers = {
     bodyModal1.classList.add("bodyModal");
     bodyModal2.classList.add("bodyModal");
     body.classList.add("bodyy");
-
     const buttonCarne = this.Buttons("carne", "carnes", () => {
       const md = this.newModal(
         0,
@@ -599,38 +832,47 @@ app.controllers = {
       );
       app.elements.root.appendChild(md);
     });
+    const bt0 = this.Styles(0, buttonCarne);
     const buttonVegetal = this.Buttons("vegetal", "vegetais", () => {
       const md = this.mdReturn(1);
       app.elements.root.appendChild(md);
     });
+    const bt = this.Styles(1, buttonVegetal);
     const buttonFruta = this.Buttons("fruta", "frutas", () => {
       const md = this.mdReturn(2);
       app.elements.root.appendChild(md);
     });
+    const bt1 = this.Styles(2, buttonFruta);
     const buttonBebida = this.Buttons("bebida", "bebidas", () => {
       const md = this.mdReturn(6);
       app.elements.root.appendChild(md);
     });
+    const bt2 = this.Styles(6, buttonBebida);
     const buttonGelado = this.Buttons("congelados", "frios", () => {
       const md = this.mdReturn(4);
       app.elements.root.appendChild(md);
     });
+    const bt3 = this.Styles(4, buttonGelado);
     const buttonGeral = this.Buttons("geral", "diversos", () => {
       const md = this.mdReturn(8);
       app.elements.root.appendChild(md);
     });
+    const bt4 = this.Styles(8, buttonGeral);
     const buttonLaptop = this.Buttons("laptop", "tech", () => {
       const md = this.mdReturn(7);
       app.elements.root.appendChild(md);
     });
+    const bt5 = this.Styles(7, buttonLaptop);
     const buttonPadaria = this.Buttons("padaria", "padaria", () => {
       const md = this.mdReturn(3);
       app.elements.root.appendChild(md);
     });
+    const bt6 = this.Styles(3, buttonPadaria);
     const buttonSnacks = this.Buttons("snacks", "snacks", () => {
       const md = this.mdReturn(5);
       app.elements.root.appendChild(md);
     });
+    const bt7 = this.Styles(5, buttonSnacks);
 
     bodyModal.appendChild(buttonCarne);
     bodyModal.appendChild(buttonVegetal);
@@ -646,6 +888,19 @@ app.controllers = {
     body.appendChild(bodyModal2);
 
     return body;
+  },
+  Styles(id, button) {
+    const seta = () => {
+      if (app.state.cart[id].lista.length > 0) {
+        button.style.border = "1px solid green";
+      } else {
+        button.style.border = "1px solid #4A4047";
+      }
+    };
+
+    setInterval(seta, 500);
+
+    return seta;
   },
   mdReturn(id) {
     const md = this.newModal(

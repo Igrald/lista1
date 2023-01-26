@@ -4,6 +4,47 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.inputMoney {
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: rgb(158, 158, 158);
+  background-color: #444;
+  max-width: 5rem;
+  color: aliceblue;
+  margin-top: 0.5rem;
+}
+.inputMoney:hover {
+  background-color: rgb(106, 106, 106);
+}
+.inputMoney:focus {
+  outline-offset: 0px;
+  outline: none;
+}
+.inputNumber {
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: rgb(158, 158, 158);
+  background-color: #444;
+  max-width: 5rem;
+  color: aliceblue;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.inputNumber:hover {
+  background-color: rgb(106, 106, 106);
+}
+.inputNumber:focus {
+  outline-offset: 0px;
+  outline: none;
+}
 .bt {
   display: flex;
   align-items: center;
@@ -59,7 +100,6 @@ body {
   border: 1px solid;
   border-color: rgb(158, 158, 158);
   background-color: #444;
-  margin-bottom: 1.5rem;
   width: 15rem;
   height: 1.5rem;
   color: aliceblue;
@@ -75,19 +115,23 @@ body {
   border-top: 1px solid rgb(171, 160, 160);
   border-left: 1px solid rgb(171, 160, 160);
   border-right: 1px solid rgb(171, 160, 160);
-  width: 15rem;
+  width: 19rem;
 }
 .tds {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid rgb(171, 160, 160);
-  background-color: rgb(54, 54, 57);
-  max-width: 12rem;
+  background-color: #363639;
+  max-width: 19rem;
   padding: 0.3rem;
   color: rgb(220, 220, 220);
 }
 .headerStyle {
   background-color: rgb(47, 46, 48);
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
 }
 .footerStyle {
   background-color: rgb(26, 26, 27);
@@ -139,6 +183,49 @@ body {
   color: #f3f3f5;
   background-color: rgb(132, 54, 111);
   border: none;
+}
+.buttonConfirm {
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f3f3f5;
+  background-color: rgb(47, 46, 48);
+  border: none;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 20px;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.QtdPrice {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
+}
+.buttonQtd {
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b8b8b8;
+  background-color: rgb(47, 46, 48);
+  border: none;
+  padding: 0.5rem;
+  font-size: 15px;
+}
+.buttonQtdd {
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b8b8b8;
+  background-color: #363639;
+  border: none;
+  font-size: 15px;
+  width: 8rem;
+  height: 2rem;
+  margin: 0.3rem;
 }
 .buttonFix {
   display: flex;

@@ -4,46 +4,55 @@ app.state = {
       id: 1,
       categoria: "carnes",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 2,
       categoria: "vegetais",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 3,
       categoria: "frutas",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 4,
       categoria: "padaria",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 5,
       categoria: "frios",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 6,
       categoria: "snacks",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 7,
       categoria: "bebidas",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 8,
       categoria: "eletronicos",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 9,
       categoria: "geral",
       lista: [],
+      totalGeral: [],
     },
   ],
   getinput() {
@@ -57,6 +66,7 @@ app.state = {
   addArrey(products) {
     app.state.arrey.push(products);
   },
+  arreyTotal: [],
   id: 0,
   count: 0,
   color: {},
@@ -65,46 +75,55 @@ app.state = {
       id: 1,
       categoria: "carnes",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 2,
       categoria: "vegetais",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 3,
       categoria: "frutas",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 4,
       categoria: "padaria",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 5,
       categoria: "frios",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 6,
       categoria: "snacks",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 7,
       categoria: "bebidas",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 8,
       categoria: "eletronicos",
       lista: [],
+      totalGeral: [],
     },
     {
       id: 9,
       categoria: "geral",
       lista: [],
+      totalGeral: [],
     },
   ],
   addToCart(products) {
@@ -126,57 +145,6 @@ app.state = {
 
     return a;
   },
-  Crud2() {
-    const produtos = {
-      categoria: [
-        {
-          cate: "cate1",
-        },
-      ],
-      item: [
-        {
-          id: 0,
-          owner: "owner1",
-          item: "item1",
-        },
-      ],
-    };
-    console.log(produtos.item);
-
-    const criaProd = (dados) => {
-      produtos.item.push({
-        id: produtos.item.length + 1,
-        owner: dados.owner,
-        item: dados.item,
-      });
-    };
-
-    criaProd({ owner: "objeto1", item: "objeto2" });
-
-    console.log(produtos.item);
-
-    const pegaTudo = () => {
-      return produtos.item;
-    };
-
-    const update = (id, newProduto) => {
-      const postAtt = pegaTudo().find((item) => {
-        return item.id === id;
-      });
-      console.log(postAtt);
-    };
-
-    const del = (id) => {
-      const listaAtt = pegaTudo().filter((atual) => {
-        return atual.id !== id;
-      });
-
-      produtos.item = listaAtt;
-
-      del(1);
-      console.log(del());
-    };
-  },
   removeAllWallet(products, id) {
     const index = localStorage.getItem(id).indexOf(products);
     if (index > -1) {
@@ -192,10 +160,5 @@ app.state = {
     if (index > -1) {
       app.state.cart[id].lista.splice(index, 1);
     }
-
-    console.log(app.state.cart[id].lista);
-    // console.log(listaa.indexOf(txt));
-    // console.log(listaa.splice(splice, 1), "splice aq ");
-    // console.log(listaa, "listaaaaaaaaaaaaaaaaaaaaaaaaaa");
   },
 };
